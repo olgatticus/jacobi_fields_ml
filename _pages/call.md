@@ -19,12 +19,12 @@ GRaM is about taking that geometry seriously!
 
 For the second edition of the GRaM workshop, we invite blog posts that explore how geometric thinking can ground machine learning models: how respecting structure can lead to better representations, more interpretable models, and sharper theoretical insight.
 
-## Key Dates
+<!-- ## Key Dates
 
 - **Submission deadline**: Friday, 26 February, 9:00 AoE
   - Any modifications to your blog post, via a pull request on github.
 - **Notification of acceptance**: Friday, 11 March, 9:00 AoE
-- **Camera-ready merge**: Friday, 11 March, 9:00 AoE
+- **Camera-ready merge**: Friday, 11 March, 9:00 AoE -->
 
 
 ## Why blog posts?
