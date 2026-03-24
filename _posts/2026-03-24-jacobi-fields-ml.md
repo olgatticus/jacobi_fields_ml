@@ -24,6 +24,27 @@ toc:
   - name: Approximation Result and Applications to Machine Learning
   - name: "Example: Comparing RG-VFM and RFM Losses"
   - name: Future Applications
+
+_styles: >
+  .def-list dt {
+    font-weight: 600;
+    font-style: italic;
+    padding: 0.5em 1em 0.2em;
+    border-left: 3px solid #888;
+    background: #f8f8f8;
+    margin-top: 0.6em;
+    border-radius: 0 4px 0 0;
+  }
+  .def-list dd {
+    margin-left: 0;
+    padding: 0.25em 1em 0.5em;
+    border-left: 3px solid #ddd;
+    background: #f8f8f8;
+    font-size: 0.95em;
+    line-height: 1.7;
+    border-radius: 0 0 4px 0;
+    margin-bottom: 0.1em;
+  }
 ---
 
 The goal of this blogpost is to provide an intuitive definition of **Jacobi fields**,
@@ -33,7 +54,9 @@ the difference of two vectors $v_1$ and $v_2$ in a tangent space $T_p\mathcal{M}
 (or a power of it), and the geodesic distance between end-points of geodesics with those vectors
 as initial velocities.
 
+<div style="max-width: 70%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/jacobi_fields_gif.gif" class="img-fluid" %}
+</div>
 
 The content of this blogpost is based on (and expands) some findings from <d-cite key="anonymous2025rgvfm"></d-cite>,
 where this concept is used to relate a variational objective (geodesic distance between endpoints)
@@ -44,10 +67,10 @@ The hope is that, by providing an accessible introduction to Jacobi fields and t
 through this blogpost, their usefulness will find more applications in future works involving
 vectors and points on curved manifolds. This post will answer the following questions:
 
-1. What are Jacobi fields?
-2. How can they be used in machine learning applications?
-3. Example: comparing RG-VFM and RFM losses
-4. Future applications
+1. [What are Jacobi fields?](#what-are-jacobi-fields)
+2. [How can they be used in machine learning applications?](#approximation-result-and-applications-to-machine-learning)
+3. [Example: comparing RG-VFM and RFM losses](#example-comparing-rg-vfm-and-rfm-losses)
+4. [Future applications](#future-applications)
 
 Let's dive deep into it!
 
@@ -57,25 +80,36 @@ Let's start from the basics, with some intuitive definitions of objects in diffe
 
 ### Basic Definitions in Differential Geometry
 
-**Riemannian manifold** $\mathcal{M}$: A smooth mathematical space that looks flat up close but can be curved globally,
-equipped with a specific tool $g$ called a *Riemannian metric* that allows
-you to measure distances and angles everywhere on it.
+<dl class="def-list">
+  <dt>Riemannian manifold \(\mathcal{M}\)</dt>
+  <dd>A smooth mathematical space that looks flat up close but can be curved globally,
+    equipped with a specific tool \(g\) called a <em>Riemannian metric</em> that allows
+    you to measure distances and angles everywhere on it.</dd>
 
-**Geodesic** $\gamma(\tau)$: A generalization of a straight line to a curved space, representing the locally
-shortest, unaccelerated path between two points on a manifold.
+  <dt>Geodesic \(\gamma(\tau)\)</dt>
+  <dd>A generalization of a straight line to a curved space, representing the locally
+    shortest, unaccelerated path between two points on a manifold.</dd>
 
-**Exponential map** $\exp_x(v)$: Takes a tangent vector $v$ at a base point $x$ on a manifold and maps it to the
-point $y$ reached by traveling along the geodesic starting from $x$ with initial velocity $v$.
+  <dt>Exponential map \(\exp_x(v)\)</dt>
+  <dd>Takes a tangent vector \(v\) at a base point \(x\) on a manifold and maps it to the
+    point \(y\) reached by traveling along the geodesic starting from \(x\) with initial
+    velocity \(v\).</dd>
 
-**Logarithmic map** $\log_x(y)$: The local inverse of the exponential map: takes a target point $y$ on the manifold
-and returns the specific tangent vector $v$ at base point $x$ needed to reach $y$ via a geodesic.
+  <dt>Logarithmic map \(\log_x(y)\)</dt>
+  <dd>The local inverse of the exponential map: takes a target point \(y\) on the manifold
+    and returns the specific tangent vector \(v\) at base point \(x\) needed to reach \(y\)
+    via a geodesic.</dd>
+</dl>
 
 In the following, we will always assume we are working with *simple manifolds*, i.e. with closed-form
 geodesics (geodesics that can be parametrized through the exponential map) and such that the
 geodesic distance between two points can always be expressed through the norm of the logarithmic
 map between them. A geodesic can thus be parametrized through the exponential map as $\gamma(\tau) := \exp_x(\tau \cdot v)$.
 
-{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/exp-map.png" class="img-fluid" caption="The exponential map on a manifold: a tangent vector $v$ at $x$ is mapped to the point reached by following the geodesic with initial velocity $v$." %}
+<div style="max-width: 55%; margin: 0 auto;">
+{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/exp-map.png" class="img-fluid" %}
+</div>
+*The exponential map on a manifold: a tangent vector $v$ at $x$ is mapped to the point reached by following the geodesic with initial velocity $v$.*
 
 ### Jacobi Field Theory
 
@@ -83,7 +117,10 @@ Intuitively, the **Jacobi field** is a vector field along a geodesic $\gamma(\ta
 on a Riemannian manifold $\mathcal{M}$ describing the variation between $\gamma(\tau)$ and other
 "infinitesimally close geodesics."
 
-{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-1.png" class="img-fluid" caption="A Jacobi field $J(\tau)$ measuring the infinitesimal separation between neighboring geodesics." %}
+<div style="max-width: 65%; margin: 0 auto;">
+{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-1.png" class="img-fluid" %}
+</div>
+*A Jacobi field $J(\tau)$ measuring the infinitesimal separation between neighboring geodesics.*
 
 In our setting, we consider a **shooting family of geodesics**
 $\{\gamma_s\}$, all starting from the same point $\gamma_s(0) := x_0 \in \mathcal{M}$,
@@ -104,21 +141,31 @@ Let's go through the construction step by step:
 
 **Step 1.** We start building the shooting family of geodesics, fully determined by the starting point and the initial velocities:
 
+<div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/diagram-1.png" class="img-fluid" %}
+</div>
 
 The time parameter $\tau$ traverses the geodesics from their common starting point $x_0$ at $\tau = 0$ to their endpoints at $\tau = 1$.
 
+<div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/diagram-2.png" class="img-fluid" %}
+</div>
 
 We can also visualize the effect of varying the parameter $s$, which translates to picking different geodesics in the family.
 
+<div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-2.png" class="img-fluid" %}
+</div>
 
+<div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-3.png" class="img-fluid" %}
+</div>
 
 **Step 2.** We can now derive the Jacobi field by differentiating such a family with respect to $s$:
 
+<div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-4.png" class="img-fluid" %}
+</div>
 
 One key observation (proved in <d-cite key="anonymous2025rgvfm"></d-cite>) is that the norm of $J(1)$ equals the geodesic distance between the endpoints
 of geodesics $\gamma_0$ and $\gamma_1$:
@@ -127,13 +174,19 @@ hence $\|J(1)\| = g\bigl(\gamma_0(1),\, \gamma_1(1)\bigr)$.
 This property will be exploited in the following, by interchangeably
 considering $\|J(1)\|$ and $g\bigl(\gamma_0(1),\, \gamma_1(1)\bigr)$.
 
+<div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-5.png" class="img-fluid" %}
+</div>
 
 At this point, we can also introduce in the picture the **initial time derivative** of the vector field $J(0)$ at $\tau = 0$, and we observe that, by definition and straightforward derivations, **$J'(0) = w$**.
 
+<div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-6.png" class="img-fluid" %}
+</div>
 
+<div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-7.png" class="img-fluid" %}
+</div>
 
 The relation between $J'(0)$ (the initial derivative of the Jacobi field) and $J(1)$
 (its value at the endpoint) is the **central object of interest**. In flat Euclidean space
@@ -146,11 +199,14 @@ establish an explicit analytical relationship between them.
 The central result that makes Jacobi fields interesting for machine learning is the relation
 between $J'(0)$ and $J(1)$, expressed by the following proposition:
 
-> **Proposition 1** *(Approximation result)* <d-cite key="anonymous2025rgvfm"></d-cite>
+> **Proposition 1** *(Approximation result)*
 >
 > $J'(0)$ is a linear approximation of $J(1)$.
 
-{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-8-1.png" class="img-fluid rounded" caption="$J'(0)$ approximates $J(1)$ up to higher-order curvature terms." %}
+<div style="max-width: 80%; margin: 0 auto;">
+{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-8-1.png" class="img-fluid rounded" %}
+</div>
+*$J'(0)$ approximates $J(1)$ up to higher-order curvature terms.*
 
 The full proof of the Proposition is in <d-cite key="anonymous2025rgvfm"></d-cite>; intuitively it consists of:
 
@@ -159,14 +215,19 @@ The full proof of the Proposition is in <d-cite key="anonymous2025rgvfm"></d-cit
 
 A natural question you may still have in mind is: **but why**? Why would this result be useful in practice? Let's explore a practical example.
 
+<div style="max-width: 22%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-9.png" class="img-fluid rounded" %}
+</div>
 
 In machine learning applications, MSE losses often involve minimizing the distance between
 two vectors or two points. In Euclidean space there is no conceptual difference between
 the two, because the space is flat, geodesics are straight lines, and the tangent space
 is the same at every point. Denoting the Euclidean distance by $d_e$:
 
-{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-10.png" class="img-fluid" caption="In Euclidean space, minimizing the distance between vectors is equivalent to minimizing the distance between the corresponding endpoints. This equivalence breaks down on curved manifolds." %}
+<div style="max-width: 80%; margin: 0 auto;">
+{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-10.png" class="img-fluid" %}
+</div>
+*In Euclidean space, minimizing the distance between vectors is equivalent to minimizing the distance between the corresponding endpoints. This equivalence breaks down on curved manifolds.*
 
 For people familiar with flow matching-based models, this property is what allows one to
 freely switch between predicting velocities and predicting endpoints when learning a
@@ -200,7 +261,7 @@ With this intuition, you may already see how the Jacobi field perspective comes 
 
 Concretely, the following Matching result was proved in <d-cite key="anonymous2025rgvfm"></d-cite>:
 
-> **Proposition 2** *(Matching result)* <d-cite key="anonymous2025rgvfm"></d-cite>
+> **Proposition 2** *(Matching result)*
 >
 > Under a specific definition of a Jacobi field for a shooting family of geodesics,
 > the following equalities hold for the RFM and RG-VFM losses:
@@ -217,7 +278,7 @@ Once the connection is drawn, the last step is to exploit Proposition 1 to relat
 the two losses. The difference between the loss values and the Jacobi field quantities
 $J(1)$ and $J'(0)$ involves taking the squared norm, which affects the Derivation:
 
-> **Proposition 3** *(Final Derivation)* <d-cite key="anonymous2025rgvfm"></d-cite>
+> **Proposition 3** *(Final Derivation)*
 >
 > Under a specific definition of a Jacobi field for a shooting family of geodesics,
 > the difference between $\mathcal{L}_{\mathrm{RG\text{-}VFM}}$ and
@@ -227,7 +288,10 @@ $J(1)$ and $J'(0)$ involves taking the squared norm, which affects the Derivatio
 >   + \underbrace{\mathbb{E}_{t,x_1,x}\!\bigl[\mathcal{C}(R,\, J'(0),\, v)
 >   + \mathcal{E}_{\mathrm{higher}}\bigr]}_{\text{curvature-dependent term}}$$
 
-{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-11.png" class="img-fluid" caption="Schematization of how the RG-VFM and RFM losses fall into the Jacobi fields perspective." %}
+<div style="max-width: 80%; margin: 0 auto;">
+{% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-11.png" class="img-fluid" %}
+</div>
+*Schematization of how the RG-VFM and RFM losses fall into the Jacobi fields perspective.*
 
 The **curvature functional** $\mathcal{C}$ captures how the manifold's geometry affects the
 loss comparison, encoding first- and second-order effects of curvature on geodesic deviation.
