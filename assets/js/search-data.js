@@ -7,28 +7,28 @@ ninja.data = [{
     title: "home",
     section: "Navigation",
     handler: () => {
-      window.location.href = "/2026/";
+      window.location.href = "/jacobi_fields_ml/";
     },
   },{id: "nav-about",
           title: "about",
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/2026/about/";
+            window.location.href = "/jacobi_fields_ml/about/";
           },
         },{id: "nav-call-for-blogposts",
           title: "call for blogposts",
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/2026/call/";
+            window.location.href = "/jacobi_fields_ml/call/";
           },
         },{id: "nav-submitting",
           title: "submitting",
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/2026/submitting/";
+            window.location.href = "/jacobi_fields_ml/submitting/";
           },
         },{id: "dropdown-lt-strong-gt-2026-lt-strong-gt",
               title: "&lt;strong&gt;2026&lt;/strong&gt;",
@@ -52,7 +52,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/2026/blog/2026/jacobi-fields-ml/";
+            window.location.href = "/jacobi_fields_ml/blog/2026/jacobi-fields-ml/";
           
         },
       },{id: "post-sample-blog-post",
@@ -63,7 +63,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/2026/blog/2026/distill-example/";
+            window.location.href = "/jacobi_fields_ml/blog/2026/distill-example/";
           
         },
       },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
@@ -92,7 +92,7 @@ ninja.data = [{
           title: 'The Godfather',
           description: "",
           section: "Books",handler: () => {
-              window.location.href = "/2026/books/the_godfather/";
+              window.location.href = "/jacobi_fields_ml/books/the_godfather/";
             },},{id: "news-a-simple-inline-announcement",
           title: 'A simple inline announcement.',
           description: "",
@@ -100,7 +100,7 @@ ninja.data = [{
           title: 'A long announcement with details',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/2026/news/announcement_2/";
+              window.location.href = "/jacobi_fields_ml/news/announcement_2/";
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
@@ -109,7 +109,7 @@ ninja.data = [{
         title: 'CV',
         section: 'Socials',
         handler: () => {
-          window.open("/2026/assets/pdf/example_pdf.pdf", "_blank");
+          window.open("/jacobi_fields_ml/assets/pdf/example_pdf.pdf", "_blank");
         },
       },{
         id: 'social-email',
@@ -130,7 +130,7 @@ ninja.data = [{
         title: 'RSS Feed',
         section: 'Socials',
         handler: () => {
-          window.open("/2026/feed.xml", "_blank");
+          window.open("/jacobi_fields_ml/feed.xml", "_blank");
         },
       },{
         id: 'social-scholar',
