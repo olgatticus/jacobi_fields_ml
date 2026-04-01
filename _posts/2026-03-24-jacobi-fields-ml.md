@@ -279,7 +279,7 @@ $J(1)$ and $J'(0)$ involves taking the squared norm, which affects the Derivatio
 
 > **Proposition 3** *(Final Derivation)*
 >
-> $\mathcal{L}_{\mathrm{RG\text{-}VFM}}$ and $\mathcal{L}_{\mathrm{RFM}}$ are related through the manifold curvature:
+> The RFM and RG-VFM losses are related through the manifold curvature:
 
 $$\mathcal{L}_{\mathrm{RG\text{-}VFM}}(\theta) = \mathcal{L}_{\mathrm{RFM}}(\theta)
   + \underbrace{\mathbb{E}_{t,x_1,x}\!\bigl[\mathcal{C}(R,\, J'(0),\, v)
