@@ -76,7 +76,7 @@ Let's dive deep into it!
 
 ## What are Jacobi Fields?
 
-Let's start from the basics, with some intuitive definitions of objects in differential geometry.
+Let's start from the basics, with some intuitive definitions of objects in differential geometry <d-cite key="docarmo1992riemannian"></d-cite>.
 
 ### Basic Definitions in Differential Geometry
 
@@ -115,7 +115,7 @@ map between them. A geodesic can thus be parametrized through the exponential ma
 
 Intuitively, the **Jacobi field** is a vector field along a geodesic $\gamma(\tau)$
 on a Riemannian manifold $\mathcal{M}$ describing the variation between $\gamma(\tau)$ and other
-"infinitesimally close geodesics."
+"infinitesimally close geodesics" <d-cite key="docarmo1992riemannian"></d-cite>.
 
 <div style="max-width: 65%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-1.png" class="img-fluid" %}
@@ -229,7 +229,7 @@ is the same at every point. Denoting the Euclidean distance by $d_e$:
 </div>
 *In Euclidean space, minimizing the distance between vectors is equivalent to minimizing the distance between the corresponding endpoints. This equivalence breaks down on curved manifolds.*
 
-For people familiar with flow matching-based models, this property is what allows one to
+For people familiar with flow matching-based models <d-cite key="lipman2022flow"></d-cite>, this property is what allows one to
 freely switch between predicting velocities and predicting endpoints when learning a
 Flow Matching model, since the latter may offer practical advantages without any
 analytical differences in flat space.
@@ -263,8 +263,7 @@ Concretely, the following Matching result was proved in <d-cite key="anonymous20
 
 > **Proposition 2** *(Matching result)*
 >
-> Under a specific definition of a Jacobi field for a shooting family of geodesics,
-> the following equalities hold for the RFM and RG-VFM losses:
+> The following equalities hold for the RFM and RG-VFM losses:
 >
 > $$\mathcal{L}_{\mathrm{RFM}}(\theta)
 >   = \mathbb{E}_{t,x_1,x}\!\left[\left\|u_{t}(x \mid x_1) - v_{t}^\theta(x)\right\|_{\mathbf{g}}^2\right]
@@ -280,13 +279,11 @@ $J(1)$ and $J'(0)$ involves taking the squared norm, which affects the Derivatio
 
 > **Proposition 3** *(Final Derivation)*
 >
-> Under a specific definition of a Jacobi field for a shooting family of geodesics,
-> the difference between $\mathcal{L}_{\mathrm{RG\text{-}VFM}}$ and
-> $\mathcal{L}_{\mathrm{RFM}}$ encodes the manifold curvature through:
->
-> $$\mathcal{L}_{\mathrm{RG\text{-}VFM}}(\theta) = \mathcal{L}_{\mathrm{RFM}}(\theta)
->   + \underbrace{\mathbb{E}_{t,x_1,x}\!\bigl[\mathcal{C}(R,\, J'(0),\, v)
->   + \mathcal{E}_{\mathrm{higher}}\bigr]}_{\text{curvature-dependent term}}$$
+> $\mathcal{L}_{\mathrm{RG\text{-}VFM}}$ and $\mathcal{L}_{\mathrm{RFM}}$ are related through the manifold curvature:
+
+$$\mathcal{L}_{\mathrm{RG\text{-}VFM}}(\theta) = \mathcal{L}_{\mathrm{RFM}}(\theta)
+  + \underbrace{\mathbb{E}_{t,x_1,x}\!\bigl[\mathcal{C}(R,\, J'(0),\, v)
+  + \mathcal{E}_{\mathrm{higher}}\bigr]}_{\text{curvature-dependent term}}$$
 
 <div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-11.png" class="img-fluid" %}
