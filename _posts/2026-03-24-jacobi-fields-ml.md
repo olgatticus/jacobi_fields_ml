@@ -93,7 +93,7 @@ Let's dive deep into it!
 
 ## What are Jacobi Fields?
 
-Let's start from the basics, with some intuitive definitions of objects in differential geometry [3].
+Let's start from the basics, with some intuitive definitions of objects in differential geometry.
 
 ### Basic Definitions in Differential Geometry
 
@@ -132,7 +132,7 @@ map between them. A geodesic can thus be parametrized through the exponential ma
 
 Intuitively, the **Jacobi field** is a vector field along a geodesic $\gamma(\tau)$
 on a Riemannian manifold $\mathcal{M}$ describing the variation between $\gamma(\tau)$ and other
-"infinitesimally close geodesics" [3].
+"infinitesimally close geodesics".
 
 <div style="max-width: 65%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-1.png" class="img-fluid" %}
@@ -297,10 +297,10 @@ $J(1)$ and $J'(0)$ involves taking the squared norm, which affects the Derivatio
 > **Proposition 3** *(Final Derivation)*
 >
 > The RFM and RG-VFM losses are related through the manifold curvature:
-
-$$\mathcal{L}_{\mathrm{RG\text{-}VFM}}(\theta) = \mathcal{L}_{\mathrm{RFM}}(\theta)
-  + \underbrace{\mathbb{E}_{t,x_1,x}\!\bigl[\mathcal{C}(R,\, J'(0),\, v)
-  + \mathcal{E}_{\mathrm{higher}}\bigr]}_{\text{curvature-dependent term}}$$
+>
+> $$\mathcal{L}_{\mathrm{RG\text{-}VFM}}(\theta) = \mathcal{L}_{\mathrm{RFM}}(\theta)
+>   + \underbrace{\mathbb{E}_{t,x_1,x}\!\bigl[\mathcal{C}(R,\, J'(0),\, v)
+>   + \mathcal{E}_{\mathrm{higher}}\bigr]}_{\text{curvature-dependent term}}$$
 
 <div style="max-width: 80%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-11.png" class="img-fluid" %}
@@ -331,9 +331,8 @@ further applications in machine learning.
 ## References
 
 <ol class="ref-list">
-  <li>Anonymous Authors. "Riemannian Variational Flow Matching for Material and Protein Design." <em>arXiv preprint</em> (2025). Under review.</li>
-  <li>Chen, Ricky T. Q. and Lipman, Yaron. "Flow Matching on General Geometries." <em>arXiv preprint arXiv:2302.03660</em> (2023).</li>
-  <li>do Carmo, Manfredo Perdigão. <em>Riemannian Geometry.</em> Birkhäuser, Boston (1992).</li>
-  <li>Lipman, Yaron, et al. "Flow Matching for Generative Modeling." <em>arXiv preprint arXiv:2210.02747</em> (2022).</li>
+  <li>Zaghen, Olga, et al. "Riemannian Variational Flow Matching for Material and Protein Design." arXiv preprint arXiv:2502.12981 (ICLR 2026). </li>
+  <li>Chen, Ricky T. Q. and Lipman, Yaron. "Flow Matching on General Geometries." <em>arXiv preprint arXiv:2302.03660</em> (ICLR 2024).</li>
+  <li>Lipman, Yaron, et al. "Flow Matching for Generative Modeling." <em>arXiv preprint arXiv:2210.02747</em> (ICLR 2023).</li>
   <li>Eijkelboom, Floor, et al. "Variational Flow Matching for Graph Generation." <em>Advances in Neural Information Processing Systems</em> 37 (2024): 11735–11764.</li>
 </ol>
