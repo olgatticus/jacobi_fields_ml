@@ -266,9 +266,7 @@ We illustrate this procedure with an example in the next section.
 ## Example: Comparing RG-VFM and RFM Losses
 
 In this section we carry out the Matching and Derivation in the specific setting of [1].
-We are interested in exploring the connection between the objective
-$\mathcal{L}_{\mathrm{RG\text{-}VFM}}$ and the Riemannian Flow Matching objective [2]
-$\mathcal{L}_{\mathrm{RFM}}$.
+We are interested in exploring the connection between the RG-VFM objective (in the intrinsic setting) and the Riemannian Flow Matching objective [2].
 
 The key conceptual difference between the two losses is that **RFM** minimizes
 the squared distance between two tangent velocities at a point on the manifold, while
