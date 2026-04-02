@@ -44,6 +44,12 @@ _styles: >
     border-radius: 0 0 4px 0;
     margin-bottom: 0.1em;
   }
+  figcaption {
+    font-size: 0.85em;
+    font-style: italic;
+    color: #555;
+    margin-top: 0.4em;
+  }
   .ref-list {
     padding-left: 0;
     list-style: none;
@@ -123,10 +129,10 @@ geodesics (geodesics that can be parametrized through the exponential map) and s
 geodesic distance between two points can always be expressed through the norm of the logarithmic
 map between them. A geodesic can thus be parametrized through the exponential map as $\gamma(\tau) := \exp_x(\tau \cdot v)$.
 
-<div style="max-width: 55%; margin: 0 auto;">
+<figure style="max-width: 55%; margin: 0 auto; text-align: center;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/exp-map.png" class="img-fluid" %}
-</div>
-*The exponential map on a manifold: a tangent vector $v$ at $x$ is mapped to the point reached by following the geodesic with initial velocity $v$.*
+<figcaption>The exponential map on a manifold: a tangent vector $v$ at $x$ is mapped to the point reached by following the geodesic with initial velocity $v$.</figcaption>
+</figure>
 
 ### Jacobi Field Theory
 
@@ -134,10 +140,10 @@ Intuitively, the **Jacobi field** is a vector field along a geodesic $\gamma(\ta
 on a Riemannian manifold $\mathcal{M}$ describing the variation between $\gamma(\tau)$ and other
 "infinitesimally close geodesics".
 
-<div style="max-width: 65%; margin: 0 auto;">
+<figure style="max-width: 65%; margin: 0 auto; text-align: center;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-1.png" class="img-fluid" %}
-</div>
-*A Jacobi field $J(\tau)$ measuring the infinitesimal separation between neighboring geodesics.*
+<figcaption>A Jacobi field $J(\tau)$ measuring the infinitesimal separation between neighboring geodesics.</figcaption>
+</figure>
 
 In our setting, we consider a **shooting family of geodesics**
 $\{\gamma_s\}$, all starting from the same point $\gamma_s(0) := x_0 \in \mathcal{M}$,
@@ -220,10 +226,10 @@ between $J'(0)$ and $J(1)$, expressed by the following proposition:
 >
 > $J'(0)$ is a linear approximation of $J(1)$.
 
-<div style="max-width: 80%; margin: 0 auto;">
+<figure style="max-width: 80%; margin: 0 auto; text-align: center;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-8-1.png" class="img-fluid rounded" %}
-</div>
-*$J'(0)$ approximates $J(1)$ up to higher-order curvature terms.*
+<figcaption>$J'(0)$ approximates $J(1)$ up to higher-order curvature terms.</figcaption>
+</figure>
 
 The full proof of the Proposition is in [1]; intuitively it consists of:
 
@@ -241,10 +247,10 @@ two vectors or two points. In Euclidean space there is no conceptual difference 
 the two, because the space is flat, geodesics are straight lines, and the tangent space
 is the same at every point. Denoting the Euclidean distance by $d_e$:
 
-<div style="max-width: 80%; margin: 0 auto;">
+<figure style="max-width: 80%; margin: 0 auto; text-align: center;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-10.png" class="img-fluid" %}
-</div>
-*In Euclidean space, minimizing the distance between vectors is equivalent to minimizing the distance between the corresponding endpoints. This equivalence breaks down on curved manifolds.*
+<figcaption>In Euclidean space, minimizing the distance between vectors is equivalent to minimizing the distance between the corresponding endpoints. This equivalence breaks down on curved manifolds.</figcaption>
+</figure>
 
 For people familiar with flow matching-based models [4], this property is what allows one to
 freely switch between predicting velocities and predicting endpoints when learning a
@@ -300,10 +306,10 @@ $J(1)$ and $J'(0)$ involves taking the squared norm, which affects the Derivatio
 >   + \underbrace{\mathbb{E}_{t,x_1,x}\!\bigl[\mathcal{C}(R,\, J'(0),\, v)
 >   + \mathcal{E}_{\mathrm{higher}}\bigr]}_{\text{curvature-dependent term}}$$
 
-<div style="max-width: 80%; margin: 0 auto;">
+<figure style="max-width: 80%; margin: 0 auto; text-align: center;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-11.png" class="img-fluid" %}
-</div>
-*Schematization of how the RG-VFM and RFM losses fall into the Jacobi fields perspective.*
+<figcaption>Schematization of how the RG-VFM and RFM losses fall into the Jacobi fields perspective.</figcaption>
+</figure>
 
 The **curvature functional** $\mathcal{C}$ captures how the manifold's geometry affects the
 loss comparison, encoding first- and second-order effects of curvature on geodesic deviation.
