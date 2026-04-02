@@ -14,8 +14,6 @@ htmlwidgets: true
 authors:
   - name: Anonymous
 
-bibliography: 2026-03-24-jacobi-fields-ml.bib
-
 toc:
   - name: What are Jacobi Fields?
     subsections:
@@ -24,6 +22,7 @@ toc:
   - name: Approximation Result and Applications to Machine Learning
   - name: "Example: Comparing RG-VFM and RFM Losses"
   - name: Future Applications
+  - name: References
 
 _styles: >
   .def-list dt {
@@ -45,6 +44,24 @@ _styles: >
     border-radius: 0 0 4px 0;
     margin-bottom: 0.1em;
   }
+  .ref-list {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: ref-counter;
+  }
+  .ref-list li {
+    counter-increment: ref-counter;
+    padding-left: 2.4em;
+    position: relative;
+    margin-bottom: 0.6em;
+    font-size: 0.9em;
+  }
+  .ref-list li::before {
+    content: '[' counter(ref-counter) ']';
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+  }
 ---
 
 The goal of this blogpost is to provide an intuitive definition of **Jacobi fields**,
@@ -58,9 +75,9 @@ as initial velocities.
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/jacobi_fields_gif.gif" class="img-fluid" %}
 </div>
 
-The content of this blogpost is based on (and expands) some findings from <d-cite key="anonymous2025rgvfm"></d-cite>,
+The content of this blogpost is based on (and expands) some findings from [1],
 where this concept is used to relate a variational objective (geodesic distance between endpoints)
-to the objective of Riemannian Flow Matching <d-cite key="chen2023flow"></d-cite>. We refer to the variational model
+to the objective of Riemannian Flow Matching [2]. We refer to the variational model
 as RG-VFM (Riemannian Gaussian - Variational Flow Matching) and to Riemannian Flow Matching as RFM.
 
 The hope is that, by providing an accessible introduction to Jacobi fields and their applications
@@ -76,7 +93,7 @@ Let's dive deep into it!
 
 ## What are Jacobi Fields?
 
-Let's start from the basics, with some intuitive definitions of objects in differential geometry <d-cite key="docarmo1992riemannian"></d-cite>.
+Let's start from the basics, with some intuitive definitions of objects in differential geometry [3].
 
 ### Basic Definitions in Differential Geometry
 
@@ -115,7 +132,7 @@ map between them. A geodesic can thus be parametrized through the exponential ma
 
 Intuitively, the **Jacobi field** is a vector field along a geodesic $\gamma(\tau)$
 on a Riemannian manifold $\mathcal{M}$ describing the variation between $\gamma(\tau)$ and other
-"infinitesimally close geodesics" <d-cite key="docarmo1992riemannian"></d-cite>.
+"infinitesimally close geodesics" [3].
 
 <div style="max-width: 65%; margin: 0 auto;">
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-1.png" class="img-fluid" %}
@@ -167,7 +184,7 @@ We can also visualize the effect of varying the parameter $s$, which translates 
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/image-4.png" class="img-fluid" %}
 </div>
 
-One key observation (proved in <d-cite key="anonymous2025rgvfm"></d-cite>) is that the norm of $J(1)$ equals the geodesic distance between the endpoints
+One key observation (proved in [1]) is that the norm of $J(1)$ equals the geodesic distance between the endpoints
 of geodesics $\gamma_0$ and $\gamma_1$:
 $J(1) = \log_{\gamma_0(1)}\!\bigl(\gamma_1(1)\bigr)$,
 hence $\|J(1)\| = g\bigl(\gamma_0(1),\, \gamma_1(1)\bigr)$.
@@ -208,7 +225,7 @@ between $J'(0)$ and $J(1)$, expressed by the following proposition:
 </div>
 *$J'(0)$ approximates $J(1)$ up to higher-order curvature terms.*
 
-The full proof of the Proposition is in <d-cite key="anonymous2025rgvfm"></d-cite>; intuitively it consists of:
+The full proof of the Proposition is in [1]; intuitively it consists of:
 
 1. Computing the Taylor expansion of $J(\tau)$ centred at $\tau = 0$ and evaluated at $\tau = 1$.
 2. Identifying $J'(0)$ as the linear term of such expansion.
@@ -229,7 +246,7 @@ is the same at every point. Denoting the Euclidean distance by $d_e$:
 </div>
 *In Euclidean space, minimizing the distance between vectors is equivalent to minimizing the distance between the corresponding endpoints. This equivalence breaks down on curved manifolds.*
 
-For people familiar with flow matching-based models <d-cite key="lipman2022flow"></d-cite>, this property is what allows one to
+For people familiar with flow matching-based models [4], this property is what allows one to
 freely switch between predicting velocities and predicting endpoints when learning a
 Flow Matching model, since the latter may offer practical advantages without any
 analytical differences in flat space.
@@ -248,9 +265,9 @@ We illustrate this procedure with an example in the next section.
 
 ## Example: Comparing RG-VFM and RFM Losses
 
-In this section we carry out the Matching and Derivation in the specific setting of <d-cite key="anonymous2025rgvfm"></d-cite>.
+In this section we carry out the Matching and Derivation in the specific setting of [1].
 We are interested in exploring the connection between the objective
-$\mathcal{L}_{\mathrm{RG\text{-}VFM}}$ and the Riemannian Flow Matching objective <d-cite key="chen2023flow"></d-cite>
+$\mathcal{L}_{\mathrm{RG\text{-}VFM}}$ and the Riemannian Flow Matching objective [2]
 $\mathcal{L}_{\mathrm{RFM}}$.
 
 The key conceptual difference between the two losses is that **RFM** minimizes
@@ -259,7 +276,7 @@ the squared distance between two tangent velocities at a point on the manifold, 
 manifold — the endpoints of two geodesics that have such vectors as initial velocities.
 With this intuition, you may already see how the Jacobi field perspective comes into play.
 
-Concretely, the following Matching result was proved in <d-cite key="anonymous2025rgvfm"></d-cite>:
+Concretely, the following Matching result was proved in [1]:
 
 > **Proposition 2** *(Matching result)*
 >
@@ -298,8 +315,8 @@ while RFM uses only the linear approximation $J'(0)$.
 In summary, RG-VFM was introduced as an alternative to RFM for learning a velocity field
 on a manifold, providing a variational formulation whose objective fully captures
 higher-order curvature effects, unlike RFM. This results in generally different objectives
-on curved manifolds. In Euclidean space, however, the RFM objective reduces to CFM <d-cite key="lipman2022flow"></d-cite>,
-while RG-VFM reduces to VFM <d-cite key="eijkelboom2024variational"></d-cite> — and these two become equivalent under appropriate
+on curved manifolds. In Euclidean space, however, the RFM objective reduces to CFM [4],
+while RG-VFM reduces to VFM [5] — and these two become equivalent under appropriate
 normalization.
 
 ## Future Applications
@@ -310,3 +327,13 @@ relationship would otherwise be obscure on curved manifolds. This could be done 
 properly adapting the Matching and Derivation procedure to different settings of interest,
 and we hope that this short introduction makes these concepts accessible and inspires
 further applications in machine learning.
+
+## References
+
+<ol class="ref-list">
+  <li>Anonymous Authors. "Riemannian Variational Flow Matching for Material and Protein Design." <em>arXiv preprint</em> (2025). Under review.</li>
+  <li>Chen, Ricky T. Q. and Lipman, Yaron. "Flow Matching on General Geometries." <em>arXiv preprint arXiv:2302.03660</em> (2023).</li>
+  <li>do Carmo, Manfredo Perdigão. <em>Riemannian Geometry.</em> Birkhäuser, Boston (1992).</li>
+  <li>Lipman, Yaron, et al. "Flow Matching for Generative Modeling." <em>arXiv preprint arXiv:2210.02747</em> (2022).</li>
+  <li>Eijkelboom, Floor, et al. "Variational Flow Matching for Graph Generation." <em>Advances in Neural Information Processing Systems</em> 37 (2024): 11735–11764.</li>
+</ol>
