@@ -186,7 +186,7 @@ We can also visualize the effect of varying the parameter $s$, which translates 
 
 One key observation (proved in [1]) is that the norm of $J(1)$ equals the geodesic distance between the endpoints
 of geodesics $\gamma_0$ and $\gamma_1$:
-$J(1) = \log_{\gamma_0(1)}\!\bigl(\gamma_1(1)\bigr)$,
+$J(1) = \log_{\gamma_0(1)}\bigl(\gamma_1(1)\bigr)$,
 hence $\|J(1)\| = g\bigl(\gamma_0(1),\, \gamma_1(1)\bigr)$.
 This property will be exploited in the following, by interchangeably
 considering $\|J(1)\|$ and $g\bigl(\gamma_0(1),\, \gamma_1(1)\bigr)$.
