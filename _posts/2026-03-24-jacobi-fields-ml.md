@@ -335,7 +335,7 @@ further applications in machine learning.
 ## References
 
 <ol class="ref-list">
-  <li>Zaghen, Olga, et al. "Riemannian Variational Flow Matching for Material and Protein Design." arXiv preprint arXiv:2502.12981 (ICLR 2026). </li>
+  <li>Zaghen, Olga, et al. "Riemannian Variational Flow Matching for Material and Protein Design." arXiv preprint arXiv:2502.12981 (ICLR 2026).</li>
   <li>Chen, Ricky T. Q. and Lipman, Yaron. "Flow Matching on General Geometries." <em>arXiv preprint arXiv:2302.03660</em> (ICLR 2024).</li>
   <li>Lipman, Yaron, et al. "Flow Matching for Generative Modeling." <em>arXiv preprint arXiv:2210.02747</em> (ICLR 2023).</li>
   <li>Eijkelboom, Floor, et al. "Variational Flow Matching for Graph Generation." <em>Advances in Neural Information Processing Systems</em> 37 (2024): 11735–11764.</li>
