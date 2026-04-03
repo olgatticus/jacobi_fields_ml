@@ -81,7 +81,7 @@ as initial velocities.
 {% include figure.liquid path="assets/img/2026-03-24-jacobi-fields-ml/jacobi_fields_gif.gif" class="img-fluid" %}
 </div>
 
-The content of this blogpost is based on (and expands) some findings from [1],
+The content of this blogpost is based on (and expands) some findings from the paper Riemannian Variational Flow Matching for Material and Protein Design [1],
 where this concept is used to relate a variational objective (geodesic distance between endpoints)
 to the objective of Riemannian Flow Matching [2]. We refer to the variational model
 as RG-VFM (Riemannian Gaussian - Variational Flow Matching) and to Riemannian Flow Matching as RFM.
